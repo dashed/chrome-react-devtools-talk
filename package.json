@@ -7,6 +7,7 @@
     "husky": "^2.1.0",
     "lint-staged": "^8.1.5",
     "mdx-deck": "^2.3.2",
+    "netlify-cli": "^2.11.15",
     "prettier": "^1.17.0"
   },
   "husky": {
@@ -22,6 +23,10 @@
   },
   "scripts": {
     "start": "mdx-deck src/slides.mdx",
-    "build": "mdx-deck build src/slides.mdx"
+    "build": "npm run build:slides && npm run static",
+    "build:slides": "mdx-deck build src/slides.mdx",
+    "static": "mkdir -p dist/static && cp -R src/static dist/",
+    "deploy": "netlify deploy",
+    "pretty": "prettier --write './*.{md,html,js}' './src/**/*.{js,mdx}'"
   }
 }
